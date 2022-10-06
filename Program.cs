@@ -16,8 +16,9 @@ namespace BlackJackCS
     {
         public static List<Card> deckOfCards = new List<Card>();
 
-        public Deck CreateDeck()
+        static Deck CreateDeck()
         {
+            Deck newDeck = new Deck();
             List<string> suits = new List<string>()
             {
               "♠️", "♥️", "♦️", "♣️"
@@ -61,8 +62,7 @@ namespace BlackJackCS
                     deck.Add(singleCard);
                 }
             }
-
-
+            return newDeck;
         }
     }
 
