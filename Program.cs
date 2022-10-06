@@ -1,64 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Collections;
 
 namespace BlackJackCS
 {
     class Card
     {
-        public static List<string> Suits = new List<string>()
-      {
-        "♠️", "♥️", "♦️", "♣️"
-      };
-
-        public static List<string> Ranks = new List<string>()
-      {
-        "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"
-      };
-
-        public string Suit { get; set; }
-        public string Rank { get; set; }
-
-        public int Point()
-        {
-            Dictionary<string, int> cardValue = new Dictionary<string, int>()
-        {
-          {"2", 2}, {"3", 3}, {"4", 4}, {"5", 5}, {"6", 6}, {"7", 7}, {"8", 8},
-          {"9", 9}, {"10", 10}, {"Jack", 10}, {"Queen", 10}, {"King", 10}, {"Ace", 11},
-        };
-            return cardValue[this.Rank];
-        }
+        public string suit { get; set; }
+        public string rank { get; set; }
+        public int point { get; set; }
     }
 
     class Deck
     {
-        public List<Card> deckOfCards = new List<Card>();
+        public static List<Card> deckOfCards = new List<Card>();
 
         public Deck CreateDeck()
         {
             List<string> suits = new List<string>()
-        {
-          "♠️", "♥️", "♦️", "♣️"
-        };
+            {
+              "♠️", "♥️", "♦️", "♣️"
+            };
 
             List<string> ranks = new List<string>()
-        {
-          "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"
-        };
-            Deck newDeck = new Deck();
-
-            foreach (string suit in suits)
             {
-                foreach (string rank in ranks)
+              "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"
+            };
+
+            var deck = new List<Card>();
+
+            foreach (var suit in suits)
+            {
+                foreach (var rank in ranks)
                 {
-                    Card cardToAdd = new Card();
-                    cardToAdd.Suit = suit;
-                    cardToAdd.Rank = rank;
-                    newDeck.deckOfCards.Add(cardToAdd);
+                    var cardValue = 0;
+
+                    if (rank == "J")
+                    {
+                        cardValue = 10;
+                    }
+                    else if (rank == "Q")
+                    {
+                        cardValue = 10;
+                    }
+                    else if (rank == "K")
+                    {
+                        cardValue = 10;
+                    }
+                    else if (rank == "A")
+                    {
+                        cardValue = 11;
+                    }
+                    else
+                    {
+                        cardValue = int.Parse(rank);
+                    }
+
+                    Card singleCard = new Card { suit = suit, rank = rank, point = cardValue };
+                    deck.Add(singleCard);
                 }
             }
-            return newDeck;
+
+
         }
     }
+
 
 
     class Program
