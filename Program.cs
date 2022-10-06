@@ -14,8 +14,6 @@ namespace BlackJackCS
 
     class Deck
     {
-        public static List<Card> deckOfCards = new List<Card>();
-
         static Deck CreateDeck()
         {
             Deck newDeck = new Deck();
