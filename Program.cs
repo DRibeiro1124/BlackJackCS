@@ -7,9 +7,9 @@ namespace BlackJackCS
 {
     class Card
     {
-        public string suit { get; set; }
-        public string rank { get; set; }
-        public int point { get; set; }
+        public string Suit { get; set; }
+        public string Rank { get; set; }
+        public int Point { get; set; }
     }
 
     class Deck
@@ -57,7 +57,7 @@ namespace BlackJackCS
                         cardValue = int.Parse(rank);
                     }
 
-                    Card singleCard = new Card { suit = suit, rank = rank, point = cardValue };
+                    Card singleCard = new Card { Suit = suit, Rank = rank, Point = cardValue };
                     deck.Add(singleCard);
                 }
             }
@@ -75,6 +75,43 @@ namespace BlackJackCS
                 deckOfCards[i] = deckOfCards[n];
                 deckOfCards[n] = temp;
             }
+        }
+
+        public Card Deal()
+        {
+            Card dealCards = this.deckOfCards[0];
+            this.deckOfCards.RemoveAt(0);
+            return dealCards;
+        }
+    }
+
+    class Hand
+    {
+        List<Card> deckOfCards = new List<Card>();
+
+
+        public int HandValue()
+        {
+            int sum = 0;
+            foreach (Card card in this.deckOfCards)
+            {
+                sum += card.Point;
+            }
+            return sum;
+        }
+
+        public void AddCard(Card card)
+        {
+            this.deckOfCards.Add(card);
+        }
+
+        public void ShowHand()
+        {
+            foreach (Card card in this.deckOfCards)
+            {
+                Console.Write(card.Point + " of " + card.Suit + ", ");
+            }
+            Console.WriteLine();
         }
     }
 
