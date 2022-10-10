@@ -115,16 +115,30 @@ namespace BlackJackCS
         }
     }
 
+    class GameGreeting
+    {
+        static void Greeting()
+        {
+            Console.WriteLine("------------------------------------");
+            Console.WriteLine("Welcome to BlackJack!");
+            Console.WriteLine(" ♠️ ♥️ ♦️ ♣️  ♠️ ♥️ ♦️ ♣️  ♠️ ♥️ ♦️ ♣️  ♠️ ♥️ ♦️ ♣️ ");
+            Console.WriteLine("------------------------------------");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Enter any key to play");
+            var pressToPlay = Console.ReadLine();
+        }
+    }
+
 
 
     class Program
     {
         static void Main(string[] args)
         {
-            Deck newDeck = new Deck();
-            newDeck = newDeck.CreateDeck();
-            Console.WriteLine("Welcome to Blackjack");
-            Console.WriteLine($"This is my deck" + newDeck);
+            var gameStart = new GameGreeting();
+            Console.WriteLine(gameStart);
+
         }
     }
 }
