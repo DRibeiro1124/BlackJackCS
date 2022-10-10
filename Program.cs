@@ -14,7 +14,8 @@ namespace BlackJackCS
 
     class Deck
     {
-        static Deck CreateDeck()
+        public List<Card> deckOfCards = new List<Card>();
+        public Deck CreateDeck()
         {
             Deck newDeck = new Deck();
             List<string> suits = new List<string>()
@@ -60,7 +61,20 @@ namespace BlackJackCS
                     deck.Add(singleCard);
                 }
             }
+
             return newDeck;
+        }
+
+        public void Shuffle()
+        {
+            var random = new Random();
+            for (int i = deckOfCards.Count - 1; i > 0; i--)
+            {
+                var n = random.Next(i + 1);
+                var temp = deckOfCards[i];
+                deckOfCards[i] = deckOfCards[n];
+                deckOfCards[n] = temp;
+            }
         }
     }
 
@@ -70,7 +84,10 @@ namespace BlackJackCS
     {
         static void Main(string[] args)
         {
+            Deck newDeck = new Deck();
+            newDeck = newDeck.CreateDeck();
             Console.WriteLine("Welcome to Blackjack");
+            Console.WriteLine($"This is my deck" + newDeck);
         }
     }
 }
